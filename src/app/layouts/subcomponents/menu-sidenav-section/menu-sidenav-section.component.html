@@ -1,0 +1,56 @@
+<mat-nav-list>
+  <div class="mt-5 ml-10">
+    <div class="mat-caption">{{ menuSection.subtitle }}</div>
+    <div class="mat-body-2 ml-5 mb-5 title">{{ menuSection.title }}</div>
+  </div>
+  <mat-divider></mat-divider>
+  <ng-container *ngFor="let item of menuSection.items">
+    <ng-container *ngIf="item.link">
+      <a mat-list-item
+        [routerLink]="item.link"
+        [queryParams]="item.queryParams"
+        (click)="onItemClicked(item)">
+        <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+        <h3 matLine>{{ item.name }}</h3>
+      </a>
+
+      <ng-container *ngIf="item.subMenu">
+        <div class="sub-menu-body">
+          <div class="mat-body-2 ml-30 mb-5 title">{{ item.subMenu.title }}</div>
+          <ng-container *ngFor="let subItem of item.subMenu.items">
+            <a style="padding-left: 10px;" mat-list-item
+              [routerLink]="subItem.link"
+              [queryParams]="subItem.queryParams"
+              (click)="onItemClicked(subItem)">
+              <mat-icon matListIcon>{{ subItem.icon }}</mat-icon>
+              <h3 matLine>{{ subItem.name }}</h3>
+            </a>
+          </ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!item.link">
+      <mat-expansion-panel [expanded]="item.subMenu.isExpanded">
+        <mat-expansion-panel-header class="mat-expansion-panel-header">
+          <mat-panel-title class="mat-expansion-panel-header-title" (click)="onItemClicked(item)">
+            <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+            <h3 matLine>{{ item.name }}</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngIf="item.subMenu">
+          <ng-container *ngFor="let subItem of item.subMenu.items">
+            <a style="padding-left: 10px;" mat-list-item
+              [routerLink]="subItem.link"
+              [queryParams]="subItem.queryParams"
+              (click)="onItemClicked(subItem)">
+              <mat-icon matListIcon>{{ subItem.icon }}</mat-icon>
+              <h3 matLine>{{ subItem.name }}</h3>
+            </a>
+          </ng-container>
+        </ng-container>
+      </mat-expansion-panel>
+    </ng-container>
+
+  </ng-container>
+</mat-nav-list>

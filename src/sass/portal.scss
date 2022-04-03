@@ -1,0 +1,90 @@
+@use '~@angular/material'as mat;
+// Portal Global
+@import "typography";
+@import "palette";
+@import "theming";
+@import "menus";
+@import "backgrounds";
+@import "inputs";
+@import "toolbar";
+@import "scrollbars";
+@import "rtl";
+@import "theme-icon";
+@import "loader";
+@import "ie";
+@import "margins";
+
+// Styles Used in Example Element Pages
+@import "examples";
+
+// Layouts
+@import "../app/layouts/layout-funky/_layout-funky-theme";
+
+// Layout Components
+@import "../app/layouts/subcomponents/user-menu/_user-menu-theme";
+@import "../app/layouts/subcomponents/notification-sidenav/_notification-sidenav-theme";
+@import "../app/layouts/subcomponents/menu-sidenav/_menu-sidenav-theme";
+@import "../app/layouts/subcomponents/vertical-icon-menu/_vertical-icon-menu-theme";
+@import "../app/layouts/subcomponents/layout-loader/_layout-loader-theme.scss";
+@import "../app/layouts/subcomponents/top-horizontal-menu/_top-horizontal-menu-theme";
+@import "../app/layouts/subcomponents/layout-switcher-menu/_layout-switcher-menu-theme";
+@import "../app/layouts/subcomponents/theme-switcher-menu/_theme-switcher-menu-theme";
+@import "../app/layouts/subcomponents/footer/_footer-theme";
+@import "../app/subcomponents/koer-alert-message/koer-alert-message.component";
+@import "../app/subcomponents/koer-data-table/koer-data-table.component";
+@import "../app/layouts/subcomponents/menu-sidenav/menu-sidenav.component";
+
+@import "theme-vars.scss";
+
+@mixin portal-theme($theme, $typography) {
+  @include portal-typography();
+  @include portal-loader($theme);
+  @include portal-menus($theme);
+  @include portal-inputs();
+  @include portal-toolbar($theme);
+  @include portal-backgrounds($theme);
+  @include portal-scrollbars();
+  @include portal-rtl();
+  @include portal-layout-funky-theme($theme);
+  @include portal-user-menu-theme($theme);
+  @include portal-notification-sidenav($theme);
+  @include portal-menu-sidenav-theme($theme, $typography);
+  @include portal-layout-compact-theme($theme, $typography);
+  @include portal-layout-loader-theme($theme);
+  @include portal-top-horizontal-menu-theme($theme);
+  @include portal-layout-switcher-theme($theme);
+  @include portal-theme-switcher-theme($theme);
+  @include portal-footer-theme($theme);
+
+  // TODO prebaciti na theme-vars
+  @include koer-data-table($theme);
+  @include koer-alert-message($theme);
+
+  //global css
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .theme-colors {
+    @include theme-vars($app-theme);
+  }
+
+  a,
+  a:visited,
+  a:active {
+    color: mat.get-color-from-palette($primary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: mat.get-color-from-palette($primary, 800);
+  }
+
+  // ne može se staviti poseban style na mat-menu.panel
+  // nego se mora ići globalno postaviti, kako se ne bi
+  // mijenjao stil za cijeli mat-menu koristi se wide-mat-menu
+  // klasa koja se stavi u backdropClass od mat-menu
+  .wide-mat-menu+* .cdk-overlay-pane>div.mat-menu-panel {
+    max-width: 100% !important;
+  }
+}

@@ -1,0 +1,23 @@
+<div fxLayout="column" fxFlexFill>
+
+  <koer-page-header
+    title="Employees">
+  </koer-page-header>
+
+  <koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+  <koer-data-table
+    [columns]="[
+      { header: 'Name', property: 'name' },
+      { header: 'Has driving license', property: 'isDriver' }
+    ]"
+    [sortBy]="['name']"
+    [service]="employeesService"
+    [columnsTemplates]="{
+      'Has driving license': isDriverTemplate
+     }">
+  </koer-data-table>
+  <ng-template #isDriverTemplate let-item="item">
+    <span>{{ item.data.isDriver ? 'Yes' : 'No' }}</span>
+  </ng-template>
+</div>

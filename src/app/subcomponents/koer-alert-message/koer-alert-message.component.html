@@ -1,0 +1,6 @@
+<div *ngIf="data?.message" class="alert mt-15 mr-10 {{ type }}">
+  <span *ngIf="dismissible" class="close-btn" (click)="dismiss()">
+    <mat-icon class="close-btn-icon">close</mat-icon>
+  </span>
+  {{ data?.message }}
+</div>

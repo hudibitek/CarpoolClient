@@ -1,0 +1,18 @@
+@use '~@angular/material' as mat;
+@mixin portal-layout-compact-theme($theme, $typography) {
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .portal-compact-sidemenu {
+    background: mat.get-color-from-palette($background, app-bar);
+    color: mat.get-color-from-palette($foreground, text);
+  }
+
+  // Badge
+  strong.portal-compact-sidemenu__end_detail {
+    background: mat.get-color-from-palette($accent, default);
+    color: mat.get-color-from-palette($accent, default-contrast);
+  }
+}
+

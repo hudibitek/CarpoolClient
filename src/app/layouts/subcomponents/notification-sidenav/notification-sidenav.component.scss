@@ -1,0 +1,52 @@
+.notification-buttons {
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+  .mat-button {
+    padding: 0 5px;
+    min-width: 10px;
+  }
+  .mat-icon {
+    font-size: 15px !important;
+  }
+}
+
+.portal-notifications-today {
+  font-weight: 300;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.portal-notifications-notification {
+  cursor: pointer;
+  padding: 0;
+  margin: 16px 16px 24px;
+  border-radius: 4px;
+  transition: box-shadow 0.3s;
+  mat-icon {
+    font-size: 12px;
+    padding: 0;
+    line-height: inherit;
+  }
+  .mat-card-header {
+    align-items: center;
+    overflow: hidden;
+    .mat-card-title {
+      font-size: 15px;
+    }
+    .mat-caption {
+      margin: 5px 0;
+      line-height: inherit;
+      height: 48px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+  }
+  &:hover .notification-buttons {
+    opacity: 1;
+  }
+  .mat-card-content {
+    padding: 16px;
+  }
+  .notification-time {
+    text-align: right;
+  }
+}

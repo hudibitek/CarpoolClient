@@ -1,0 +1,82 @@
+@use '~@angular/material' as mat;
+@mixin theme-vars($theme) {
+  //default palette foreground/background:
+  $foreground-palette: map-get($theme, foreground);
+  $background-palette: map-get($theme, background);
+
+  /////////////////////////////////////////////////
+  // SCSS VARS
+  /////////////////////////////////////////////////
+
+  $primary: mat.get-color-from-palette(map-get($theme, primary));
+  $accent: mat.get-color-from-palette(map-get($theme, accent));
+  $warn: mat.get-color-from-palette(map-get($theme, warn));
+
+  $base: mat.get-color-from-palette($foreground-palette, base);
+  $divider: mat.get-color-from-palette($foreground-palette, divider);
+  $dividers: mat.get-color-from-palette($foreground-palette, dividers);
+  $disabled: mat.get-color-from-palette($foreground-palette, disabled);
+  $disabled-button: mat.get-color-from-palette($foreground-palette, disabled-button);
+  $disabled-text: mat.get-color-from-palette($foreground-palette, disabled-text);
+  $hint-text: mat.get-color-from-palette($foreground-palette, hint-text);
+  $secondary-text: mat.get-color-from-palette($foreground-palette, secondary-text);
+  $icon: mat.get-color-from-palette($foreground-palette, icon);
+  $icons: mat.get-color-from-palette($foreground-palette, icons);
+  $text: mat.get-color-from-palette($foreground-palette, text);
+  $slider-off: mat.get-color-from-palette($foreground-palette, slider-off);
+  $slider-off-active: mat.get-color-from-palette($foreground-palette, slider-off-active);
+
+  $status-bar: mat.get-color-from-palette($background-palette, status-bar);
+  $app-bar: mat.get-color-from-palette($background-palette, app-bar);
+  $background: mat.get-color-from-palette($background-palette, background);
+  $hover: mat.get-color-from-palette($background-palette, hover);
+  $card: mat.get-color-from-palette($background-palette, card);
+  $dialog: mat.get-color-from-palette($background-palette, dialog);
+  $disabled-button: mat.get-color-from-palette($background-palette, disabled-button);
+  $raised-button: mat.get-color-from-palette($background-palette, raised-button);
+  $focused-button: mat.get-color-from-palette($background-palette, focused-button);
+  $selected-button: mat.get-color-from-palette($background-palette, selected-button);
+  $selected-disabled-button: mat.get-color-from-palette($background-palette, selected-disabled-button);
+  $disabled-button-toggle: mat.get-color-from-palette($background-palette, disabled-button-toggle);
+
+  /////////////////////////////////////////////////
+  // CSS VARS
+  /////////////////////////////////////////////////
+
+  --primary-color: #{$primary};
+  --accent-color: #{$accent};
+  --warn-color: #{$warn};
+
+  --base-color: #{$base};
+  --divider-color: #{$divider};
+  --dividers-color: #{$dividers};
+  --disabled-color: #{$disabled};
+  --disabled-text-color: #{$disabled-text};
+  --hint-text-color: #{$hint-text};
+  --secondary-text-color: #{$secondary-text};
+  --icon-color: #{$icon};
+  --icons-color: #{$icons};
+  --text-color: #{$text};
+  --slider-off-color: #{$slider-off};
+  --slider-off-active-color: #{$slider-off-active};
+
+  --status-bar-color: #{$status-bar};
+  --app-bar-color: #{$app-bar};
+  --background-color: #{$background};
+  --hover-color: #{$hover};
+  --card-color: #{$card};
+  --dialog-color: #{$dialog};
+  --disabled-button-color: #{$disabled-button};
+  --raised-button-color: #{$raised-button};
+  --focused-button-color: #{$focused-button};
+  --selected-button-color: #{$selected-button};
+  --selected-disabled-button-color: #{$selected-disabled-button};
+  --disabled-button-toggle-color: #{$disabled-button-toggle};
+
+  /////////////////////////////////////////////////
+  // CUSTOM VARS
+  /////////////////////////////////////////////////
+
+  --map-pin-green-color: #049902;
+  --map-pin-red-color: #f44336;
+}

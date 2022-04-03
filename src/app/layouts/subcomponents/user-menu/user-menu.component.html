@@ -1,0 +1,12 @@
+<a class="portal-user-menu-button" mat-button [mat-menu-trigger-for]="userDetailsMenu">
+  <img class="portal-user-menu-button__avatar" src="assets/images/layouts/avatar.png" alt="Brian">
+  <span class="portal-user-menu-button__username">Dummy</span>
+</a>
+<mat-menu #userDetailsMenu="matMenu" classList="portal-menu-no-padding">
+  <div class="portal-user-menu-header" fxLayout="row" fxLayoutAlign="center">
+    <img class="portal-user-menu-header__avatar" src="assets/images/layouts/avatar.png" alt="Brian" />
+    <div class="portal-user-menu-header__details" fxLayout="column" fxLayoutAlign="center start">
+      <h2>Dummy</h2>
+    </div>
+  </div>
+</mat-menu>

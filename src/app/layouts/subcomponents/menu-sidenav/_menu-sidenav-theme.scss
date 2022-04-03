@@ -1,0 +1,162 @@
+@use '~@angular/material' as mat;
+@mixin portal-menu-sidenav-theme($theme, $typography) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .portal-classic-leftsidenav {
+    background: mat.get-color-from-palette($background, app-bar);
+  }
+
+  portal-menu-sidenav {
+    .nav-header {
+      display: inline-block;
+      min-height: 35px;
+      margin-top: 5px;
+    }
+
+    .nav-header-logo,
+    .nav-header-logo:hover,
+    .mat-body-2 a {
+      text-decoration: none;
+    }
+
+    .mat-body-2 a {
+      color: mat.get-color-from-palette($primary);
+    }
+
+    .mat-body-2 a:hover {
+      color: mat.get-color-from-palette($primary, 800);
+    }
+
+    .portal-menu-sidnav-body {
+      overflow-y: auto;
+
+      .portal-menu-sidnav-body__subheader {
+        margin: 12px 0;
+        padding: 0 16px;
+        vertical-align: middle;
+      }
+
+      .mat-expansion-panel {
+        box-shadow: none;
+
+        .mat-expansion-panel-header {
+          padding: 0px 16px;
+
+          .mat-expansion-panel-header-title {
+            margin: 0;
+            align-items: center;
+
+            h3 {
+              margin: 0;
+              padding: 0 16px;
+            }
+
+            .mat-icon {
+              @include portal-ui-icon-sizing(16px);
+            }
+          }
+        }
+      }
+
+      .mat-nav-list {
+        padding: 0px;
+
+        .mat-list-icon {
+          @include portal-ui-icon-sizing(16px);
+        }
+
+        .mat-icon.portal-menu-sidnav-body__end_detail {
+          @include portal-ui-icon-sizing(16px);
+        }
+      }
+
+      // Stop home menu item from auto focusing when sidenav opens in over mode
+      .mat-list-item-focus {
+        background: transparent;
+      }
+    }
+  }
+
+  .portal-menu-sidnav-body {
+    background: mat.get-color-from-palette($background, app-bar);
+    color: mat.get-color-from-palette($foreground, text);
+
+    // Sub header
+    .portal-menu-sidnav-body__subheader {
+      font-size: mat.font-size($typography, body-2);
+      font-weight: mat.font-weight($typography, body-2);
+      line-height: mat.line-height($typography, body-2);
+      background: mat.get-color-from-palette($background, app-bar);
+      color: mat.get-color-from-palette($primary);
+    }
+
+    $submenuBackground: mat.get-color-from-palette($background, background);
+    .sub-menu-body {
+      background: $submenuBackground;
+    }
+
+    // Expansion Panel
+    .mat-expansion-panel {
+      box-shadow: none;
+      background: mat.get-color-from-palette($background, app-bar);
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0px;
+      background: $submenuBackground;
+      color: mat.get-color-from-palette($foreground, text);
+
+      .mat-list-item {
+        opacity: 0;
+        text-indent: 20px;
+        transition-property: opacity, text-indent;
+        transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        transition-duration: 0.4s;
+
+        .mat-list-item-content {
+          padding: 0 16px;
+        }
+      }
+    }
+
+    // Submenu items animation
+    .mat-expanded .mat-list-item {
+      opacity: 1;
+      text-indent: 0;
+    }
+
+    @for $i from 1 through 20 {
+      .mat-expanded .mat-list-item:nth-child(#{$i}) {
+        transition-delay: ($i - 1) * 0.12s;
+      }
+    }
+
+    .mat-expansion-indicator {
+      transition: transform .3s;
+      width: 24px;
+      text-align: center;
+
+      &:after {
+        padding: 2px;
+      }
+    }
+
+    // End detail icon
+    .mat-icon.portal-menu-sidnav-body__end_detail {
+      color: mat.get-color-from-palette($accent, default);
+    }
+
+    // Badges
+    strong.portal-menu-sidnav-body__end_detail {
+      background: mat.get-color-from-palette($accent, default);
+      color: mat.get-color-from-palette($accent, default-contrast);
+      min-width: 24px;
+      text-align: center;
+      border-radius: 50%;
+      font-size: .75em;
+    }
+  }
+}

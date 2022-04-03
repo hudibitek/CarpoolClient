@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink="/" routerLinkActive="portal-menu--active" [routerLinkActiveOptions]="{ exact: true }">
+      <span>Home</span>
+    </a>
+
+    <a mat-button routerLink="/">
+      <span>Colors</span>
+    </a>
+
+    <a mat-button [matMenuTriggerFor]="containerX">Container X</a>
+    <mat-menu
+      #containerX="matMenu"
+      yPosition="below"
+      [overlapTrigger]="false">
+      <a mat-menu-item routerLink="/">
+        <mat-icon matListIcon>email</mat-icon>
+        <span>Email</span>
+      </a>
+      <a mat-menu-item routerLink="/">
+        <mat-icon matListIcon>check_circle</mat-icon>
+        <span>Todo</span>
+      </a>
+      <a mat-menu-item routerLink="/">
+        <mat-icon matListIcon>pin_drop</mat-icon>
+        <span>Maps</span>
+      </a>
+    </mat-menu>
+
+    <a mat-button [matMenuTriggerFor]="containerY">Container Y</a>
+    <mat-menu
+      #containerY="matMenu"
+      yPosition="below"
+      [overlapTrigger]="false">
+      <a mat-menu-item routerLink="/">
+        <mat-icon matListIcon>chat</mat-icon>
+        <span>Chat</span>
+      </a>
+      <a mat-menu-item routerLink="/">
+        <mat-icon matListIcon>date_range</mat-icon>
+        <span>Calendar</span>
+      </a>
+      <a mat-menu-item routerLink="/">
+        <mat-icon matListIcon>face</mat-icon>
+        <span>Contact</span>
+      </a>
+    </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>

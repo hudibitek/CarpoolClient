@@ -1,0 +1,20 @@
+<div fxLayout="column" fxFlexFill>
+
+  <koer-page-header
+    title="Cars">
+  </koer-page-header>
+
+  <koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+  <koer-data-table
+    [columns]="[
+      { header: 'Plates', property: 'plates' },
+      { header: 'Name', property: 'name' },
+      { header: 'Car type', property: 'carType' },
+      { header: 'Color', property: 'color' },
+      { header: 'Number of seats', property: 'numberOfSeats' }
+    ]"
+    [sortBy]="['plates']"
+    [service]="carsService">
+  </koer-data-table>
+</div>

@@ -1,0 +1,10 @@
+<mat-toolbar class="portal-footer mat-elevation-z6" [ngClass]="{ 'portal-transparent-footer': transparent }">
+  <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <small>
+      &copy; {{ date | date:'yyyy' }} Use at your own risk d.d.
+    </small>
+    <mat-hint class="version">
+      v{{ env.version }}
+    </mat-hint>
+  </mat-toolbar-row>
+</mat-toolbar>

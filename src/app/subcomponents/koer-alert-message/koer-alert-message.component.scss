@@ -1,0 +1,42 @@
+@use '~@angular/material' as mat;
+@mixin koer-alert-message($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  koer-alert-message {
+    .alert {
+      padding: 15px;
+    }
+
+    .error {
+      background-color: mat.get-color-from-palette($warn, default);
+      color: mat.get-color-from-palette($warn, default-contrast);
+    }
+
+    .warning {
+      background-color: mat.get-color-from-palette($accent, default);
+      color: mat.get-color-from-palette($accent, default-contrast);
+    }
+
+    .info {
+      background-color: mat.get-color-from-palette($primary, default);
+      color: mat.get-color-from-palette($primary, default-contrast);
+    }
+
+    .close-btn {
+      color: mat.get-color-from-palette($primary, default-contrast);
+      float: right;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: mat.get-color-from-palette($primary, darker);
+    }
+
+    .close-btn-icon {
+      font-size: 14px;
+    }
+  }
+}

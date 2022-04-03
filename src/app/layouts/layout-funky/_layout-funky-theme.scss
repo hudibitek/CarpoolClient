@@ -1,0 +1,23 @@
+@use '~@angular/material' as mat;
+@mixin portal-layout-funky-theme($theme) {
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .portal-funky-icon-menu {
+    background: mat.get-color-from-palette($background, app-bar);
+    color: mat.get-color-from-palette($foreground, text);
+  }
+
+  .portal-funky-drawer-menu {
+    background: mat.get-color-from-palette($background, app-bar);
+    color: mat.get-color-from-palette($foreground, text);
+  }
+
+  // Badge
+  strong.portal-funky-icon-menu__end_detail {
+    background: mat.get-color-from-palette($accent, default);
+    color: mat.get-color-from-palette($accent, default-contrast);
+  }
+}
+

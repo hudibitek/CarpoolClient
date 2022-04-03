@@ -1,0 +1,41 @@
+@use '~@angular/material' as mat;
+@import '~@angular/material/theming';
+@include mat.core();
+
+@mixin koer-data-table($theme) {
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+
+  koer-data-table {
+    .mat-table {
+      display: table;
+      border-collapse: collapse;
+      width: 100%;
+
+      .mat-row-pointer {
+        cursor: pointer;
+      }
+
+      .mat-row:hover {
+        background-color: mat.get-color-from-palette($background, hover);
+      }
+
+      > .mat-header-row,
+      > .mat-row {
+        display: table-row;
+
+        > .mat-header-cell,
+        > .mat-cell {
+          display: table-cell;
+          vertical-align: middle;
+          padding: 0 7px;
+          margin: 0px 2%;
+        }
+      }
+    }
+  }
+}
+
+button.small {
+  height: 38px;
+}

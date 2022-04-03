@@ -1,0 +1,30 @@
+@use '~@angular/material' as mat;
+@mixin portal-backgrounds($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .portal-content-bg {
+    background: mat.get-color-from-palette($background, card);
+    color: mat.get-color-from-palette($foreground, text);
+  }
+
+  .portal-accent-bg {
+    background: linear-gradient(125deg, mat.get-color-from-palette($accent), mat.get-color-from-palette($accent, darker));
+    color: mat.get-color-from-palette($accent, default-contrast);
+    p a {
+      color: mat.get-color-from-palette($accent, default-contrast);
+      text-decoration: underline;
+    }
+  }
+
+  .portal-primary-bg {
+    background: linear-gradient(125deg, mat.get-color-from-palette($primary), mat.get-color-from-palette($primary, darker));
+    color: mat.get-color-from-palette($primary, default-contrast);
+    p a {
+      color: mat.get-color-from-palette($primary, default-contrast);
+      text-decoration: underline;
+    }
+  }
+}

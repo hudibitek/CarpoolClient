@@ -1,0 +1,39 @@
+@use '~@angular/material' as mat;
+@mixin portal-notification-sidenav($theme) {
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .portal-notification-sidenav {
+    background: mat.get-color-from-palette($background, background);
+    color: mat.get-color-from-palette($foreground, text);
+  }
+
+  .portal-notifications-notification {
+    background: mat.get-color-from-palette($background, card);
+    @include mat.elevation(1);
+    .portal-notifications-subheader, .mat-card-header {
+      background: mat.get-color-from-palette($background, 'hover');
+    }
+    .mat-line mat-icon {
+      color: mat.get-color-from-palette($primary, A200);
+    }
+    .mat-card-header-text {
+      flex: 1 1 0;
+    }
+    .not-seen {
+      color: mat.get-color-from-palette($foreground, default);
+    }
+    .seen {
+      color: grey;
+    }
+    &:hover {
+      @include mat.elevation(6);
+    }
+  }
+  .portal-notifications-weather-item {
+    .mat-list-item-content div.mat-list-text {
+      padding: 0;
+    }
+  }
+}

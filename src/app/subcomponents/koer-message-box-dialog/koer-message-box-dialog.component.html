@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <koer-alert-message [data]="koerAlertData"></koer-alert-message>
+  <h2 mat-dialog-title>{{ data.title }}</h2>
+  <div>
+    {{ data.message }}
+  </div>
+</div>
+
+<div fxLayout="column" class="mt-30">
+  <mat-error *ngIf="errorSummary">
+    <pre>{{ errorSummary }}</pre>
+  </mat-error>
+</div>
+
+<div mat-dialog-actions class="mt-10" fxLayoutAlign="center center">
+  <button mat-button *ngFor="let button of data.buttons" (click)="onClick(button)">{{ button.text }}</button>
+</div>

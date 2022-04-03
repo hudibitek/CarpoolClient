@@ -1,0 +1,45 @@
+<koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+<mat-table [dataSource]="dataSource" matSort matSortDisableClear [matSortActive]="defaultSortHeader">
+
+  <ng-container *ngFor="let column of columns" [cdkColumnDef]="column.header">
+
+    <ng-container *ngIf="isColumnSortable(column.header); else notSortableHeader">
+      <mat-header-cell mat-sort-header *cdkHeaderCellDef>{{ column.hideHeader ? '' : column.displayHeader ?? column.header }}</mat-header-cell>
+    </ng-container>
+    <ng-template #notSortableHeader>
+      <mat-header-cell *cdkHeaderCellDef>{{ column.hideHeader ? '' : column.displayHeader ?? column.header }}</mat-header-cell>
+    </ng-template>
+
+    <mat-cell *cdkCellDef="let item">
+
+      <ng-container
+        [ngTemplateOutlet]="columnsTemplates[column.header] ? columnsTemplates[column.header] : noTemplate"
+        [ngTemplateOutletContext]="displayCellFunc ?
+          { item: { data: displayCellFunc({ item: item, column: column }), column: column}} :
+          { item: { data: item, column: column }}">
+      </ng-container>
+
+      <ng-template #noTemplate let-item="item">
+        {{ lodash.get(item.data, item.column.property) }}
+      </ng-template>
+
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let row; columns: displayedColumns;"
+    [ngClass]="{ 'mat-row-pointer': rowClickRedirectUrl != null || rowClickRedirectCallback != null }"
+    (click)="onRowClick(row)"></mat-row>
+</mat-table>
+
+<div *ngIf="isLoading" fxLayout="column" fxLayoutAlign="center center">
+  <p class="caption">Loading ...</p>
+</div>
+
+<div *ngIf="!isLoading && filterResponse && filterResponse.total === 0" fxLayout="column" fxLayoutAlign="center center">
+  <p class="caption">No data available</p>
+</div>
+
+<mat-paginator #paginator [length]="filterResponse?.total" [pageSize]="defaults.pageSize" [pageSizeOptions]="defaults.pageSizeOptions"></mat-paginator>

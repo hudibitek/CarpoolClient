@@ -1,0 +1,37 @@
+<div fxLayout="column" fxFlexFill>
+
+  <koer-page-header
+    title="Travel plans"
+    createButtonLabel="Create Travel plan"
+    (onCreateButtonClick)="openTravelPlanCreateDialog()">
+  </koer-page-header>
+
+  <koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+  <koer-data-table
+    [columns]="[
+      { header: 'Driver', property: 'driver.name' },
+      { header: 'Car name', property: 'car.name' },
+      { header: 'Car type', property: 'car.carType' },
+      { header: 'Car plates', property: 'car.plates' },
+      { header: 'Start location', property: 'startLocation' },
+      { header: 'End location', property: 'endLocation' },
+      { header: 'Start date', property: 'startDate' },
+      { header: 'End date', property: 'endDate' }
+    ]"
+    [sortBy]="['startDate|desc']"
+    [service]="travelPlansService"
+    [rowClickRedirectUrl]="'travel-plan-view'"
+    [rowClickRedirectParam]="'id'"
+    [columnsTemplates]="{
+      'Start date': startDateTemplate,
+      'End date': endDateTemplate
+    }">
+  </koer-data-table>
+  <ng-template #startDateTemplate let-item="item">
+    <span>{{ item?.data?.startDate | koerDate: 'short' }}</span>
+  </ng-template>
+  <ng-template #endDateTemplate let-item="item">
+    <span>{{ item?.data?.endDate | koerDate: 'short' }}</span>
+  </ng-template>
+</div>

@@ -1,0 +1,9 @@
+<div class="mt-20 ml-20">
+  <h1>Carpool App</h1>
+  <p>Status: <b>Running</b></p>
+  <p>Hosting environment: <b>{{ env.name }}</b></p>
+  <p>Version: <b>{{ env.version }}</b></p>
+  <div *ngIf="!env.production">
+    <p>Web API url: <b><a href="{{ env.baseApiUrl }}">{{ env.baseApiUrl }}</a></b></p>
+  </div>
+</div>

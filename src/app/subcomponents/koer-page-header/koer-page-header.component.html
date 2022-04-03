@@ -1,0 +1,16 @@
+<div fxlayout="column">
+  <div fxFlex="90%">
+    <div class="mat-title">{{ title }}</div>
+  </div>
+  <div fxFlex>
+    <div *ngIf="createButtonLabel" fxFlex="grow">
+      <button mat-button mat-raised-button *ngIf="onCreateButtonClick.observers.length != 0" fxFlex="nogrow" class="create-button" color="primary" (click)="onClick()">
+        <mat-icon class="asset-icon" matListIcon>add_circle</mat-icon>
+        {{ createButtonLabel }}
+      </button>
+    </div>
+    <div *ngIf="optionLinks" fxFlex="nogrow">
+      <koer-options-button [context]="optionLinksContext" [items]="optionLinks"></koer-options-button>
+    </div>
+  </div>
+</div>

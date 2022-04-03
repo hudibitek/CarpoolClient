@@ -1,0 +1,9 @@
+@use '~@angular/material' as mat;
+@mixin portal-user-menu-theme($theme) {
+  $accent: map-get($theme, accent);
+
+  .portal-user-menu-header {
+    background: mat.get-color-from-palette($accent, 600);
+    color: mat.get-contrast-color-from-palette($accent, 600);
+  }
+}

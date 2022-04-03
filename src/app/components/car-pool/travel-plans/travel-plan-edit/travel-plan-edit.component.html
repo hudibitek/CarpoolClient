@@ -1,0 +1,89 @@
+<koer-page-header [title]="'Edit Travel plan'"></koer-page-header>
+
+<koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+<form novalidate [formGroup]="form">
+  <div fxLayout="column" class="tp-edit-form">
+
+    <mat-form-field fxLayout="column">
+      <input matInput formControlName="startLocation" placeholder="Start location">
+      <mat-error>
+        <koer-validation-errors field="startLocation">
+        </koer-validation-errors>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxLayout="column">
+      <input matInput formControlName="endLocation" placeholder="End location">
+      <mat-error>
+        <koer-validation-errors field="endLocation">
+        </koer-validation-errors>
+      </mat-error>
+    </mat-form-field>
+
+    <div fxLayout="column" fxLayoutGap="30px">
+      <div fxLayout="row">
+        <mat-form-field>
+          <input matInput formControlName="startDate"
+            placeholder="From" i18n-placeholder
+            [ngxMatDatetimePicker]="pickerFrom">
+          <mat-error>
+            <koer-validation-errors field="startDate">
+            </koer-validation-errors>
+          </mat-error>
+        </mat-form-field>
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #pickerFrom>
+        </ngx-mat-datetime-picker>
+
+        <mat-form-field class="ml-20">
+          <input matInput formControlName="endDate"
+            placeholder="To" i18n-placeholder
+            [ngxMatDatetimePicker]="pickerTo">
+          <mat-error>
+            <koer-validation-errors field="endDate">
+            </koer-validation-errors>
+          </mat-error>
+        </mat-form-field>
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #pickerTo>
+        </ngx-mat-datetime-picker>
+      </div>
+    </div>
+
+    <koer-dropdown
+      formControlName="carId"
+      [placeholder]="'Car'"
+      [entityService]="carsService"
+      [entityOrderBy]="['id']"
+      [modelPropertyName]="'id'"
+      [itemDisplayProperty]="'name'"
+      [itemTemplate]="itemTemplate"
+      [selectedItemTemplate]="itemTemplate">
+    </koer-dropdown>
+    <ng-template #itemTemplate let-item="item">
+      <span>{{ item?.name }} - {{ item?.carType }} ({{ item?.plates }})</span>
+    </ng-template>
+
+    <koer-dropdown
+      formControlName="driverId"
+      [placeholder]="'Driver'"
+      [entityService]="employeesService"
+      [entityOrderBy]="['id']"
+      [modelPropertyName]="'id'"
+      [itemDisplayProperty]="'name'"
+      [createFilterRequestFunc]="filterEmployees">
+    </koer-dropdown>
+
+    <koer-validation-errors>
+    </koer-validation-errors>
+
+    <div mat-dialog-actions class="mt-30">
+      <button mat-raised-button color="primary" [disabled]="!form.valid" tabindex="2" (click)="onSaveClick()">
+        Save
+      </button>
+      <button mat-button tabindex="-1" (click)="onCancelClick()">Cancel</button>
+    </div>
+
+  </div>
+</form>

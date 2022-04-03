@@ -1,0 +1,22 @@
+<form novalidate [formGroup]="form">
+  <div mat-dialog-content fxLayout="column">
+    <h1 mat-dialog-title>Add passenger</h1>
+
+    <koer-dropdown
+      formControlName="employeeId"
+      [placeholder]="'Passenger'"
+      [entityService]="employeesService"
+      [entityOrderBy]="['id']"
+      [modelPropertyName]="'id'"
+      [itemDisplayProperty]="'name'">
+    </koer-dropdown>
+
+    <koer-validation-errors>
+    </koer-validation-errors>
+  </div>
+
+  <div mat-dialog-actions class="mt-30">
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onCreateClick()" tabindex="2">Create</button>
+    <button mat-button (click)="onCancelClick()" tabindex="-1">Cancel</button>
+  </div>
+</form>

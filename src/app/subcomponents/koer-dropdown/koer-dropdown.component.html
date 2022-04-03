@@ -1,0 +1,36 @@
+<koer-alert-message [data]="koerAlertData"></koer-alert-message>
+<ng-template #defaultItemTemplate let-item="item">
+  <span>{{ item }}</span>
+</ng-template>
+
+<div fxLayout="row">
+  <mat-form-field class="dropdown-form">
+    <mat-select
+      [errorStateMatcher]="this"
+      [(ngModel)]="selectedItem"
+      [placeholder]="placeholder"
+      [disabled]="!filteredItems || isDisabled">
+      <mat-option *ngFor="let item of filteredItems" [value]="item">
+        <ng-container
+          [ngTemplateOutlet]="itemTemplate || defaultItemTemplate"
+          [ngTemplateOutletContext]="getOptionTemplateContext(item)">
+        </ng-container>
+      </mat-option>
+      <mat-select-trigger>
+        <ng-container
+          [ngTemplateOutlet]="selectedItemTemplate || defaultItemTemplate"
+          [ngTemplateOutletContext]="getSelectedOptionTemplateContext(selectedItem)">
+        </ng-container>
+      </mat-select-trigger>
+    </mat-select>
+    <mat-error>
+      <koer-validation-errors [field]="validationField">
+      </koer-validation-errors>
+    </mat-error>
+    <div *ngIf="noItems" class="mat-caption"><b>No items!</b></div>
+  </mat-form-field>
+
+  <div *ngIf="isLoading" fxLayout="row" fxFlexAlign="center">
+    <mat-progress-spinner diameter="16" mode="indeterminate"></mat-progress-spinner>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div fxLayout="column" fxFlexFill>
+  <a class="nav-header-logo">
+    <mat-toolbar class=" portal-side-menu-top-toolbar">
+      <mat-toolbar-row fxLayout="row">
+        <img fxFlex fxFlexAlign="center" class="portal-toolbar-brand mt-5" src="assets/images/car.jpg" alt="Energy Cloud">
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </a>
+
+  <div class="portal-menu-sidnav-body portal-hide-scrollbars" fxFlex="nogrow noshrink">
+
+    <mat-nav-list>
+      <ng-container *ngFor="let menuSection of menuSections">
+        <app-menu-sidenav-section [menuSection]="menuSection" [selectedId]="selectedId"></app-menu-sidenav-section>
+      </ng-container>
+    </mat-nav-list>
+  </div>
+
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span fxFlex></span>
+      <a mat-icon-button (click)="sidenav.close()">
+        <mat-icon>chevron_left</mat-icon>
+      </a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,30 @@
+<div fxFlexFill fxLayout="column">
+  <mat-toolbar>
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center">
+      <img class="portal-toolbar-brand" src="assets/images/koer-logo.png" alt="Portal">
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div fxFlex="nogrow noshrink" class="portal-compact-sidemenu portal-hide-scrollbars" fxLayout="column">
+    <!-- project management menu -->
+    <a mat-button
+      [matMenuTriggerFor]="projectManagementMenu">
+      <mat-icon>event_note</mat-icon>
+      <h3>Projects</h3>
+    </a>
+    <mat-menu
+      #projectManagementMenu="matMenu">
+      <a mat-menu-item [routerLink]="" routerLinkActive="portal-menu--active">
+        <mat-icon>domain</mat-icon>
+        <span>Sites</span>
+      </a>
+    </mat-menu>
+  </div>
+  <mat-toolbar>
+    <mat-toolbar-row fxLayout="row">
+      <span fxFlex></span>
+      <a mat-icon-button (click)="sidenav.close()">
+        <mat-icon>chevron_left</mat-icon>
+      </a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

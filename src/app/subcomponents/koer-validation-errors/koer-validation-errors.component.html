@@ -1,0 +1,11 @@
+<ng-container *ngIf="field && formGroup?.form?.get(field)">
+  <mat-error *ngFor="let error of formGroup.form.get(field).errors">
+    {{ error }}
+  </mat-error>
+</ng-container>
+
+<ng-container *ngIf="!field && formGroup?.form?.errors?.length">
+  <mat-error *ngFor="let error of formGroup.form.errors">
+    {{ error }}
+  </mat-error>
+</ng-container>

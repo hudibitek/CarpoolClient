@@ -1,0 +1,54 @@
+<koer-page-header
+  [title]="'Travel plan'"
+  [optionLinks]="optionLinks"
+  [createButtonLabel]="'Add passenger'"
+  (onCreateButtonClick)="openAddPassengerDialog()">
+</koer-page-header>
+
+<koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+<div class="mb-30">
+  <div fxLayout="row">
+    <strong fxFlex=30%>Start location</strong>
+    <span>{{ travelPlan?.startLocation }}</span>
+  </div>
+  <div fxLayout="row">
+    <strong fxFlex=30%>End location</strong>
+    <span>{{ travelPlan?.endLocation }}</span>
+  </div>
+  <div fxLayout="row">
+    <strong fxFlex=30%>Driver</strong>
+    <span>{{ travelPlan?.driver.name }}</span>
+  </div>
+  <div fxLayout="row">
+    <strong fxFlex=30%>Start date</strong>
+    <span>{{ travelPlan?.startDate | koerDate: 'short' }}</span>
+  </div>
+  <div fxLayout="row">
+    <strong fxFlex=30%>End date</strong>
+    <span>{{ travelPlan?.endDate | koerDate: 'short' }}</span>
+  </div>
+  <div fxLayout="row">
+    <strong fxFlex=30%>Number of seats</strong>
+    <span>{{ travelPlan?.car.numberOfSeats }}</span>
+  </div>
+</div>
+
+<koer-page-header
+  [title]="'Passengers'">
+</koer-page-header>
+<koer-data-table
+  [columns]="[
+      { header: 'Name', property: 'employee.name' },
+      { header: 'Options', property: 'options'}
+    ]"
+  [service]="travelPlanEmployeesService"
+  [parentId]="'travelPlanId'"
+  [parentIdValue]="travelPlanId"
+  [createFilterRequestFunc]="tableFilterFunc"
+  [sortBy]="['employee.name']"
+  [columnsTemplates]="{ 'Options': optionsTemplate }">
+  <ng-template #optionsTemplate let-item="item">
+    <koer-options-button [items]="passengersOptionLinks" [context]="item.data" [backgroundColor]="'inherit'"></koer-options-button>
+  </ng-template>
+</koer-data-table>

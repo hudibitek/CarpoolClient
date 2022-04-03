@@ -1,0 +1,9 @@
+@use '~@angular/material' as mat;
+@mixin portal-top-horizontal-menu-theme($theme) {
+  $accent: map-get($theme, accent);
+
+  .portal-notification .portal-notification-badge {
+    background: mat.get-color-from-palette($accent, default);
+    color: mat.get-color-from-palette($accent, default-contrast);
+  }
+}

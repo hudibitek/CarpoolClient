@@ -1,0 +1,13 @@
+<button *ngIf="title" mat-button mat-raised-button fxFlex="nogrow" class="create-button" color="primary" [matMenuTriggerFor]="menu" (click)="stopPropagation($event)">
+  <mat-icon class="asset-icon" matListIcon>add_circle</mat-icon>
+  {{ title }}
+</button>
+<button *ngIf="!title" mat-button class="options-button" [ngStyle]="{ 'background-color': backgroundColor }" [matMenuTriggerFor]="menu" (click)="stopPropagation($event)">
+  <mat-icon class="options-icon" fontSet="fa" [fontIcon]="faIcon ? faIcon : 'fa-ellipsis-h'"></mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <mat-container *ngFor="let item of items">
+    <button *ngIf="item.isVisibleFunc == null || item.isVisibleFunc(context)" mat-menu-item [routerLink]="item.link ? item.link : null" [queryParamsHandling]="'preserve'"
+      (click)="item.clickFunc ? onClick(item) : null">{{ item?.label }}</button>
+  </mat-container>
+</mat-menu>

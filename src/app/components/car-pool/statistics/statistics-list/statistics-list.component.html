@@ -1,0 +1,47 @@
+<div fxLayout="column" fxFlexFill>
+
+  <koer-page-header
+    title="Carpool statistics">
+  </koer-page-header>
+
+  <koer-alert-message [data]="koerAlertData"></koer-alert-message>
+
+  <form novalidate [formGroup]="form">
+    <div fxLayout="row" fxLayoutGap="30px">
+      <mat-form-field fxFlex="10">
+        <mat-label>Month</mat-label>
+        <mat-select formControlName="month">
+          <mat-option *ngFor="let item of months" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="10">
+        <mat-label>Year</mat-label>
+        <mat-select formControlName="year">
+          <mat-option *ngFor="let item of years" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <koer-data-table
+    [columns]="[
+      { header: 'Car name', property: 'car.carName' },
+      { header: 'Car plates', property: 'car.carPlates' },
+      { header: 'Total trips', property: 'car.numberOfTrips' },
+      { header: 'Unique passengers', property: 'uniquePassengers' }
+    ]"
+    [autoload]="false"
+    [createFilterRequestFunc]="tableFilterFunc"
+    [sortBy]="['car.carName']"
+    [service]="carpoolStatsService"
+    [columnsTemplates]="{ 'Unique passengers': passengersTemplate }">
+    <ng-template #passengersTemplate let-item="item">
+      <span>{{ item.data.uniquePassengers.join(', ') }}</span>
+    </ng-template>
+  </koer-data-table>
+</div>
